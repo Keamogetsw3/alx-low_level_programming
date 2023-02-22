@@ -6,16 +6,17 @@
  * Return: Always 0.
  */
 
-void print_alphabet(void)
+int main(void)
 {
-	char alp = 'a';
+	char c[8] = "_putchar";
 
-	while (alp <= 'z')
+	int i = 0;
+
+	while (i < 8)
 	{
-		_putchar (alp);
-		alp++;
-
+		_putchar(c[i]);
+		i++;
 	}
-	_putchar ('\n');
-
+	_putchar('\n');
+	return (0);
 }
