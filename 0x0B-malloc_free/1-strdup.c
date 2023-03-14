@@ -2,15 +2,15 @@
 #include "main.h"
 
 /**
- **_strdup() - returns a pointer to a new string 
- *which is a duplicate of the string str
- *@str: string to duplicate
+ * *_strdup - copies the string given as parameter
+ * @str: string to duplicate
+ *
+ * Return: pointer to the copied string (Success), NULL (Error)
  */
-
 char *_strdup(char *str)
 {
-  char *dup;
- unsigned int i, len;
+	char *dup;
+	unsigned int i, len;
 
 	i = 0;
 	len = 0;
@@ -31,4 +31,3 @@ char *_strdup(char *str)
 
 	return (dup);
 }
-  
