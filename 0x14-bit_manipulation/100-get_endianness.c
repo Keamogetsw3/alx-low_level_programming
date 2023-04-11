@@ -3,9 +3,12 @@
  * get_endianness - checks the endianness
  * Return: 1 on little endian,  return 0 on big endian
  */
-int get_endianness(void) {
+int get_endianness(void)
+{
     int num;
+    char *endian;
+
     num = 1;
-    char *p = (char*)&num;
-    return (*p == 1);
+    endian = (char*)&num;
+    return (*endian == 1);
 }
