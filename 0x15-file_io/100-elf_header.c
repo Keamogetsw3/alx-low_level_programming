@@ -1,59 +1,63 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
-#define BUF_SIZE 1024
 /**
- * cp file_from file_to - program that copies the content of a file to another file
- * @file: is the name of the file
- * @format:
- * Return: 1 on success, -1 on failure
+ * main - Displays the information contained in the ELF header at the
+ *        start of an ELF file.
+ * @aargc: Number of arguments passed into the program
+ * @argv: Array of pointers to arguments passed.
+ * Return: 0 on success.
  */
- int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
-        exit(97);
-    }
 
-    char *file_from = argv[1];
-    char *file_to = argv[2];
+int main(int argc, char **argv)
+{
+    int fd;
+    unsigned char e_ident[EI_NIDENT];
+    Elf64_Ehdr ehdr;
 
-    int fd_from = open(file_from, O_RDONLY);
-    if (fd_from == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+    if (argc != 2)
+    {
+        dprintf(STDERR_FILENO, "Usage: %s <elf_file>\n", argv[0]);
         exit(98);
     }
 
-    int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    if (fd_to == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-        exit(99);
-    }
-
-    char buffer[BUFFER_SIZE];
-    ssize_t nread;
-
-    while ((nread = read(fd_from, buffer, BUFFER_SIZE)) > 0) {
-        ssize_t nwritten = write(fd_to, buffer, nread);
-        if (nwritten == -1) {
-            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-            exit(99);
-        }
-    }
-
-    if (nread == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+    fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Cannot open %s\n", argv[1]);
         exit(98);
     }
 
-    if (close(fd_from) == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-        exit(100);
+    if (read(fd, &e_ident, EI_NIDENT) != EI_NIDENT)
+    {
+        dprintf(STDERR_FILENO, "Error: Cannot read ELF magic\n");
+        exit(98);
     }
 
-    if (close(fd_to) == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-        exit(100);
+    check_file(e_ident);
+
+    if (lseek(fd, 0, SEEK_SET) == -1)
+    {
+        dprintf(STDERR_FILENO, "Error: Cannot reset file offset\n");
+        exit(98);
     }
 
-    return 0;
+    if (read(fd, &ehdr, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
+    {
+        dprintf(STDERR_FILENO, "Error: Cannot read ELF header\n");
+        exit(98);
+    }
+
+    closes_file(fd);
+
+    print_magic(e_ident);
+    print_class(e_ident);
+    print_data(e_ident);
+    print_version(e_ident);
+    print_os_abi(e_ident);
+    print_abi(e_ident);
+    print_type(ehdr.e_type, e_ident);
+    print_entry(ehdr.e_entry, e_ident);
+
+    return (0);
 }

@@ -3,8 +3,9 @@
 #include "main.h"
 #define BUF_SIZE 1024
 /**                             
- * cp file_from file_to - program that copies content of a file 1 to file 2
- * @file: is the name of the file                                   
+ * main - program that copies content of a file 1 to file 2
+ * @argc: num of arguments passed
+ * @argv[]: pointer                                   
  * Return: 0 on success
  */
 int main(int argc, char *argv[])
