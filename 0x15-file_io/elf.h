@@ -50,6 +50,6 @@ typedef struct
     uint64_t e_shstrndx;
 } Elf64_Ehdr;
 
-void print_error(const char * message);
+void print_error(const char *message);
 
 #endif /*ELF_H*/
