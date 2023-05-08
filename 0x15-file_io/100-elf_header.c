@@ -1,63 +1,60 @@
-#include "main.h"
-#include <elf.h>
+#include "elf.h"
+
 /**
- * main - Displays the information contained in the ELF header at the
- *        start of an ELF file.
+ * main - entry point
  * @aargc: Number of arguments passed into the program
  * @argv: Array of pointers to arguments passed
- * 
- * Return: 0 on success.
+ * Description: checks If the file is not an ELF file or not
+ *
+ * Return: 1 on success, -1 on failure
  */
-
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
-    int fd;
-    unsigned char e_ident[EI_NIDENT];
-    Elf64_Ehdr ehdr;
+	int fd;
+	Elf64_Ehdr eheadr;
+	ssize_t rd;/* read from file*/
 
-    if (argc != 2)
-    {
-        dprintf(STDERR_FILENO, "Usage: %s <elf_file>\n", argv[0]);
-        exit(98);
-    }
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
+		return (1);
+	}
 
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Cannot open %s\n", argv[1]);
-        exit(98);
-    }
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		print_error("File failed to open");
+		exit (98);
+	}
 
-    if (read(fd, &e_ident, EI_NIDENT) != EI_NIDENT)
-    {
-        dprintf(STDERR_FILENO, "Error: Cannot read ELF magic\n");
-        exit(98);
-    }
+	rd = read(fd, &eheadr, sizeof(eheadr));
+	if (n != sizeof(ehdr))
+	{
+		print_error("Failed to read ELF header");
+		close(fd);
+		exit (98);
+	}
 
-    check_file(e_ident);
+	if (memcmp(ehdr.e_ident, ELFMAG, SELFMAG) != 0)
+	{
+		print_error("Not an ELF file");
+		close(fd);
+		exit (98);
+	}
 
-    if (lseek(fd, 0, SEEK_SET) == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Cannot reset file offset\n");
-        exit(98);
-    }
+	print_elf_header(&eheadr);
+	close(fd);
+	return (0);
 
-    if (read(fd, &ehdr, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
-    {
-        dprintf(STDERR_FILENO, "Error: Cannot read ELF header\n");
-        exit(98);
-    }
+}
 
-    closes_file(fd);
-
-    print_magic(e_ident);
-    print_class(e_ident);
-    print_data(e_ident);
-    print_version(e_ident);
-    print_os_abi(e_ident);
-    print_abi(e_ident);
-    print_type(ehdr.e_type, e_ident);
-    print_entry(ehdr.e_entry, e_ident);
-
-    return (0);
+/**
+ * print_error- print error message to stderr
+ * @message: erroe message to print
+ *
+ * Return: nothing
+ */
+void print_error(const char* message)
+{
+    fprintf(stderr, "%s: %s\n", message, strerror(errno));
 }
