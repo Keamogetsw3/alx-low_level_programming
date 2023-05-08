@@ -54,7 +54,7 @@ int main(int argc, char** argv)
  *
  * Return: nothing
  */
-void print_error(const char* message)
+void print_error(const char *message)
 {
     fprintf(stderr, "%s: %s\n", message, strerror(errno));
 }
