@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * create_file - read file and prints to POSIX standard outpu
- * @filename: name of the file to creae
+ * create_file - Read file and prints to POSIX standard outpu
+ * @filename: Name of the file to creae
  * @text_content: NULL terminated string to write to the file
  *
  * Return: 1 on success, -1 on failure

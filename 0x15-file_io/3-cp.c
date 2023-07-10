@@ -3,9 +3,9 @@
 #define BUF_SIZE 1024
 
 /**
- * main - entry point
- * @argc: number of arguments passed to the program
- * @argv: array of pointers to the arguments
+ * main - Entry point
+ * @argc: Number of arguments passed to the program
+ * @argv: Array of pointers to the arguments
  *
  * Return: 0 on success
  */
