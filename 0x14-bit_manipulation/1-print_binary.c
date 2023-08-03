@@ -6,11 +6,9 @@
  * @n: binary representation of a number
  */
 
-void print_binary(unsigned long int n)
+void print_binary(unsigned long int num)
 {
-	if (n > 1)
-	{
-      print_binary(n >> 1);
-	}
-	putchar((n & 1) ? '1' : '0');
+	if (num > 1)
+		print_binary(num >> 1);
+	_putchar((num & 1) ? '1' : '0');
 }
