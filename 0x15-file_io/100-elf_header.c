@@ -1,60 +1,52 @@
-#include "elf.h"
+include "elf.h"
 
 /**
- * main - entry point
- * @aargc: Number of arguments passed into the program
- * @argv: Array of pointers to arguments passed
- * Description: checks If the file is not an ELF file or not
+ * close_elf - Closes the ELF file descriptor and exits with an error code.
+ * @file_descriptor: The file descriptor of the ELF file.
+ * @err_msg: The error message to display.
  *
- * Return: 1 on success, -1 on failure
+ * Return: No return, the program exits.
  */
-int main(int argc, char** argv)
+void close_elf(int file_descriptor, const char *err_msg)
 {
-	int fd;
-	Elf64_Ehdr eheadr;
-	ssize_t rd;/* read from file*/
-
-	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
-		return (1);
-	}
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		print_error("File failed to open");
-		exit (98);
-	}
-
-	rd = read(fd, &eheadr, sizeof(eheadr));
-	if (n != sizeof(ehdr))
-	{
-		print_error("Failed to read ELF header");
-		close(fd);
-		exit (98);
-	}
-
-	if (memcmp(ehdr.e_ident, ELFMAG, SELFMAG) != 0)
-	{
-		print_error("Not an ELF file");
-		close(fd);
-		exit (98);
-	}
-
-	print_elf_header(&eheadr);
-	close(fd);
-	return (0);
-
+    dprintf(STDERR_FILENO, "Error: Can't close file_descriptor %s\n", err_msg);
+    close(file_descriptor);
+    exit(98);
 }
 
 /**
- * print_error- print error message to stderr
- * @message: erroe message to print
+ * main - entry point.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: nothing
+ * Return: Always 0 on success.
  */
-void print_error(const char *message)
+int main(int argc, char *argv[])
 {
-    fprintf(stderr, "%s: %s\n", message, strerror(errno));
+    Elf64_Ehdr *header;
+    int file_descriptor;
+    int res;
+
+    if (argc != 2)
+    {
+        dprintf(STDERR_FILENO, "Usage: %s <elf_file>\n", argv[0]);
+        return (98);
+    }
+
+    file_descriptor = open(argv[1], O_RDONLY);
+    if (file_descriptor == -1)
+        close_elf(file_descriptor, "Error: Can't read file");
+
+    header = malloc(sizeof(Elf64_Ehdr));
+    if (header == NULL)
+        close_elf(file_descriptor, "Error: Can't allocate memory");
+
+    res = read(file_descriptor, header, sizeof(Elf64_Ehdr));
+    if (res == -1)
+        close_elf(file_descriptor, "Error: Can't read file");
+
+    free(header);
+    close(file_descriptor);
+
+    return (0);
 }
