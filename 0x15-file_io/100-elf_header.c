@@ -10,6 +10,7 @@
 void close_elf(int file_descriptor, const char *err_msg);
 int main(int argc, char *argv[]);
 void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
 
 /**
  * close_elf - Closes the ELF file descriptor and exits with an error code.
@@ -79,4 +80,26 @@ void check_elf(unsigned char *e_ident)
             exit(98);
         }
     }
+}
+
+/**
+ * print_magic - Prints the magic numbers of an ELF header.
+ * @e_ident: Array containing the ELF magic numbers.
+ *
+ */
+void print_magic(unsigned char *e_ident)
+{
+	int index;
+
+	printf("  Magic:   ");
+
+	for (index = 0; index < EI_NIDENT; index++)
+	{
+		printf("%02x", e_ident[index]);
+
+		if (index == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
+	}
 }
