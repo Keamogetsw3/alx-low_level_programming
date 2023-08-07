@@ -9,6 +9,7 @@
 
 void close_elf(int file_descriptor, const char *err_msg);
 int main(int argc, char *argv[]);
+void check_elf(unsigned char *e_ident);
 
 /**
  * close_elf - Closes the ELF file descriptor and exits with an error code.
@@ -59,4 +60,23 @@ int main(int argc, char *argv[])
     close(file_descriptor);
 
     return (0);
+}
+
+/**
+ * check_elf - Checks if a file is an ELF file.
+ * @e_ident: Array containing the ELF magic numbers.
+ *
+ */
+void check_elf(unsigned char *e_ident)
+{
+    int index;
+    
+    for (index = 0; index < 4; index++)
+    {
+        if (e_ident[index] != 127 && e_ident[index] != 'E' && e_ident[index] != 'L' && e_ident[index] != 'F')
+        {
+            dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+            exit(98);
+        }
+    }
 }
