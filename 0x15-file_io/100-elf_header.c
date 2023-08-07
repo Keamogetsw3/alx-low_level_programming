@@ -1,4 +1,14 @@
-include "elf.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+#include <elf.h>
+
+void close_elf(int file_descriptor, const char *err_msg);
+int main(int argc, char *argv[]);
 
 /**
  * close_elf - Closes the ELF file descriptor and exits with an error code.
