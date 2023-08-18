@@ -1,9 +1,11 @@
 #include "lists.h"
 
 /**
- * main - check the code
+ * delete_dnodeint_at_index - delete node
+ * @head: head of list
+ * index: index
  *
- * Return: Always EXIT_SUCCESS.
+ * Return: 1
  */
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
