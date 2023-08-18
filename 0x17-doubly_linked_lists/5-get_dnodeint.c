@@ -5,9 +5,9 @@
  *
  * Return: Always EXIT_SUCCESS.
  */
-dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
+dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index) 
 {
-  dlistint_t *current_n;
+    dlistint_t *current_n;
     unsigned int counter;
 
     current_n = head;
@@ -23,6 +23,5 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
         counter++;
     }
 
-    return (NULL);
-  
+    return NULL;
 }
