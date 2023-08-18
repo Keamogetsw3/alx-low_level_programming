@@ -1,9 +1,10 @@
 #include "lists.h"
 
 /**
- * main - check the code
- *
- * Return: Always EXIT_SUCCESS.
+ * dlistint_len - function that returns the number of elements in a linked dlistint list
+ * @h: head of list
+ * 
+ * Return: count.
  */
 size_t dlistint_len(const dlistint_t *h)
 {
