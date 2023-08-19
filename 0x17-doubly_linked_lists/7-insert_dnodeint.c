@@ -1,11 +1,12 @@
 #include "lists.h"
 
 /**
- * main - check the code
+ * insert_dnodeint_at_index - check the code
  *
- * Return: Always EXIT_SUCCESS.
+ * Return: Null.
  */
-dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n) {
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+{
   dlistint_t *new_node;
   dlistint_t *next;
   dlistint_t *current_n;
@@ -16,7 +17,8 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n) {
 
   if (h == NULL)
     return (NULL);
-  if (idx != 0) {
+  if (idx != 0)
+  {
     for (count = 0; count < idx - 1 && current_n != NULL; count++)
       current_n = current_n->next;
     if (current_n == NULL)
