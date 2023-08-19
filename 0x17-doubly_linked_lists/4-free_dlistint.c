@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * main - check the code
+ * free_dlistint- check the code
  *
  * Return: Always EXIT_SUCCESS.
  */
