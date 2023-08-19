@@ -1,11 +1,12 @@
 #include "lists.h"
 
 /**
- * main - check the code
+ * add_dnodeint_end - add node
  *
- * Return: Always EXIT_SUCCESS.
+ * Return: New Nodes
  */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n) {
+dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+{
   dlistint_t *new_node;
   dlistint_t *current_n;
 
@@ -19,7 +20,8 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n) {
     return (NULL);
   new_node->n = n;
   new_node->next = NULL;
-  if (*head == NULL) {
+  if (*head == NULL)
+  {
     new_node->prev = NULL;
     *head = new_node;
     return (new_node);
