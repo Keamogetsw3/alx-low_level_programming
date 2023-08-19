@@ -3,7 +3,7 @@
 /**
  * dlistint_len - function that returns the number of elements in a linked
  * dlistint list
- * @h: head of list
+ * @h: head of lists
  *
  * Return: count.
  */
