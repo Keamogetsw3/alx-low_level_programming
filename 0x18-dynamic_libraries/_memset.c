@@ -1,14 +1,23 @@
 #include "main.h"
 
 /**
-	* function: _memset
-	* @:
-	* @:
+	* _memset: fill a block of memory with a specified value
+	* @s:
+	* @b:
+ *@n: 
 	*
 	* Return:
-**/
-int _memset()
+*/
+char *_memset(char *s, char b, unsigned int n)
 {
-    // TODO: Implement the function
-    return 0;
+    char *ptr = s;
+
+    while (n > 0)
+    {
+        *ptr = b;
+        ptr++;
+        n--;
+    }
+
+    return (s);
 }
