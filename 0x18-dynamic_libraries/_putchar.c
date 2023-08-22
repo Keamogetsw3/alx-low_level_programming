@@ -1,14 +1,12 @@
 #include "main.h"
 
 /**
-	* function: _putchar
-	* @:
-	* @:
-	*
-	* Return:
-**/
-int _putchar()
+ * _putchar: Writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1 
+ */
+int _putchar(chat c)
 {
-    // TODO: Implement the function
-    return 0;
+    return (write(1, &c, 1));
 }

@@ -1,14 +1,19 @@
 #include "main.h"
 
 /**
-	* function: _puts
-	* @:
-	* @:
-	*
-	* Return:
-**/
-int _puts()
+ * _puts: Used to print a string to stdout
+ * @s: The string to be printed
+ *
+ * Return: No. of characters printed
+ */
+int _puts(char *s)
 {
-    // TODO: Implement the function
-    return 0;
+  int counter = 0;
+
+    while (s[counter] != '\0')
+    {
+        _putchar(s[counter]);
+        counter++;
+    }  
+  return (counter);
 }

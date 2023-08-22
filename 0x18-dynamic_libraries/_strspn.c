@@ -1,14 +1,17 @@
 #include "main.h"
 
 /**
-	* function: _strspn
-	* @:
-	* @:
-	*
-	* Return:
-**/
-int _strspn()
+ * _strspn - computes the length of the maximum initial segment of the string
+ * @str1: strint to compute the lengh
+ * @accept: string delimit
+ *
+ * Return: length of the initial segment
+ */
+unsigned _strspn(char *s, char *accept)
 {
-    // TODO: Implement the function
-    return 0;
+	unsigned int count = 0;
+
+	while (*s && _strchr(accept, *s++))
+		count++;
+	return (count);
 }
