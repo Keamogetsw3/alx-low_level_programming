@@ -7,8 +7,7 @@
 	*
 	* Return:
 **/
-int _abs()
+int _abs(int n)
 {
-    // TODO: Implement the function
-    return 0;
+    return (n < 0) ? -n : n;
 }
