@@ -7,8 +7,7 @@
 	*
 	* Return:
 **/
-int _islower()
+int _islower(int c)
 {
-    // TODO: Implement the function
-    return 0;
+    return (c >= 'a' && c <= 'z');
 }
