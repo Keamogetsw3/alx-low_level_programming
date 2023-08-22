@@ -1,14 +1,27 @@
 #include "main.h"
 
 /**
-	* function: _strpbrk
-	* @:
-	* @:
+	* _strpbrk: search a string for any of a set of characters 
+	* @s:
+	* @accept:
 	*
 	* Return:
 **/
-int _strpbrk()
+char *_strpbrk(char *s, char *accept)
 {
-    // TODO: Implement the function
-    return 0;
+    while (*s != '\0')
+    {
+        char *a = accept;
+        while (*a != '\0')
+	{
+            if (*s == *a)
+	    {
+                return (s);
+            }
+            a++;
+        }
+        s++;
+    }
+
+    return (NULL);
 }
