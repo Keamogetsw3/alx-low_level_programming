@@ -1,14 +1,21 @@
 #include "main.h"
 
 /**
-	* function: _strncpy
-	* @:
-	* @:
+	* _strncpy: copy the first n characters from src to dest
+	* @dest:
+	* @src:
+ *@n:
 	*
 	* Return:
 **/
-int _strncpy()
+char *_strncpy(char *dest, char *src, int n)
 {
-    // TODO: Implement the function
-    return 0;
-}
+    char *dest_start = dest;
+
+    while (*src != '\0' && n > 0)
+    {
+        *dest = *src;
+        dest++;
+        src++;
+        n--;
+    }
