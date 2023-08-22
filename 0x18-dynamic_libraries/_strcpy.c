@@ -7,16 +7,16 @@
  *
  * Return: char pointer to dest
  */
-char *_strcpy(har *dest, char *src)
+char *_strcpy(char *dest, char *src)
 {
     int i = 0;
 
-	while (*(source_str + i) != '\0')
+	while (*(src + i) != '\0')
 	{
-		*(dest_str + i) = *(source_str + i);
+		*(dest + i) = *(src + i);
 		++i;
 	}
-	*(dest_str + i) = *(source_str + i);
+	*(dest + i) = *(src + i);
 
-	return (dest_str);
+	return (dest);
 }

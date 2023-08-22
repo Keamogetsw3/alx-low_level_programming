@@ -6,7 +6,7 @@
  *
  * Return: No. of characters printed
  */
-int _puts(char *s)
+void _puts(char *s)
 {
   int counter = 0;
 
@@ -15,5 +15,4 @@ int _puts(char *s)
         _putchar(s[counter]);
         counter++;
     }  
-  return (counter);
 }
