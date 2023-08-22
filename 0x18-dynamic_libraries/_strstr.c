@@ -1,6 +1,11 @@
 #include "main.h"
 
-/* Function to find the first occurrence of a substring in a string */
+/**
+ *_strstr - Function to find the first occurrence of a substring in a string
+ *@haystack:
+ *@needle:
+ *
+ */
 char *_strstr(char *haystack, char *needle)
 {
     if (*needle == '\0')
@@ -21,11 +26,11 @@ char *_strstr(char *haystack, char *needle)
 
         if (*n == '\0')
 	{
-            return haystack;
+	  return (haystack);
         }
 
         haystack++;
     }
 
-    return NULL; // Substring not found
+    return (NULL);
 }
