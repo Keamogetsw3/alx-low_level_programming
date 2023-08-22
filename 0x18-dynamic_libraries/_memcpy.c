@@ -1,14 +1,24 @@
 #include "main.h"
 
 /**
-	* function: _memcpy
-	* @:
-	* @:
+	* _memcpy:
+	* @dest:
+	* @src:
+ *@n:
 	*
 	* Return:
 **/
-int _memcpy()
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
-    // TODO: Implement the function
-    return 0;
+    char *dest_start = dest;
+
+    while (n > 0)
+    {
+        *dest = *src;
+        dest++;
+        src++;
+        n--;
+    }
+
+    return (dest_start);
 }
