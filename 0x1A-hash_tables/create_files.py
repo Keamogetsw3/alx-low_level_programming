@@ -1,22 +1,21 @@
-def create_c_file(filename, num_tabs):
+def create_c_file(filename):
     with open(filename, 'w') as file:
-        # Add tabs for spacing
-        tabs = '\t' * num_tabs
+        # Write the #include directive at the top
+        file.write("#include \"hash_tables.h\"\n")
+        file.write("\n")
 
-        # Write the comment style at the beginning of the file
-        file.write(f'{tabs}/**\n')
-        file.write(f'{tabs} *  function - describe what the function does\n')
-        file.write(f'{tabs} *  @variable1: the first variable\n')
-        file.write(f'{tabs} *  @variable2:\n')
-        file.write(f'{tabs} *\n')
-        file.write(f'{tabs} *  Return: what the function returns\n')
-        file.write(f'{tabs} */\n')
-        file.write(f'{tabs}\n')
+        # Write the comment style after the #include directive
+        file.write("/**\n")
+        file.write(" *  function - describe what the function does\n")
+        file.write(" *  @variable1: the first variable\n")
+        file.write(" *  @variable2:\n")
+        file.write(" *\n")
+        file.write(" *  Return: what the function returns\n")
+        file.write(" */\n")
+        file.write("\n")
 
         # Write sample C code to the file (you can customize this code as needed)
-        file.write(f'{tabs}#include "hash_tables.h"\n')
-        file.write(f'{tabs}\n')
-        file.write(f'{tabs}/* Your C code here */\n')
+        file.write("/* Your C code here */\n")
 
 if __name__ == "__main__":
     file_names = [
@@ -30,8 +29,6 @@ if __name__ == "__main__":
         "100-sorted_hash_table.c"
     ]
 
-    num_tabs = 8
-
     for filename in file_names:
-        create_c_file(filename, num_tabs)
-        print(f"{filename} with {num_tabs} tabs for spacing and comments has been created.")
+        create_c_file(filename)
+        print(f"{filename} with #include directive before comments has been created.")
