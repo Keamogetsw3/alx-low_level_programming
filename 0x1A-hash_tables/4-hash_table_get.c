@@ -15,9 +15,9 @@ hash_node_t *current_node;
 if (ht == NULL)
 	return (NULL);
 
-index = key_index((const unsigned char *) key, ht->size);
-
 unsigned long int index;
+
+index = key_index((const unsigned char *) key, ht->size);
 
 current_node = ht->array[index];
 
