@@ -1,11 +1,10 @@
 #include "hash_tables.h"
 
 /**
- *  function - describe what the function does
- *  @variable1: the first variable
- *  @variable2:
+ *  hash_table_get - describe what the function does
+ *  @ht: hash table you want to look into
+ *  @key:  key you are looking for
  *
- *  Return: what the function returns
+ *  Return: value associated with the element, or NULL if key couldn’t be found
  */
 
-/* Your C code here */
