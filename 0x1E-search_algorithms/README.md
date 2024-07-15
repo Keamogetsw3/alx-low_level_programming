@@ -1,4 +1,5 @@
-# Resources
+# 0x1E. C - Search Algorithms
+### #C ### #Algorithm# Resources
 
 ## Read or watch:
 
